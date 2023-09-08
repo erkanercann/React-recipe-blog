@@ -1,0 +1,90 @@
+.login-page {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    .container {
+        @include flexbox(row, center, center);
+        height: 90%;
+    }
+    .go-to-homepage {
+        font-size: 0.8rem;
+        background-color: $medium-color;
+        color: $light-color;
+        padding: 5px 10px;
+
+        &:hover {
+            &::before,
+            &::after {
+                width: 120%;
+                height: 150%;
+                border-color: $secondary-color;
+            }
+            background-color: $secondary-color;
+            color: $primary-color;
+        }
+
+        &::before {
+            border-color: $medium-color;
+            border-radius: 4px 0 0 0;
+        }
+        &::after {
+            border-color: $medium-color;
+            border-radius: 0 0 4px 0;
+        }
+    }
+
+    .login {
+        width: 50%;
+        background-color: $medium-color;
+        padding: 5rem;
+        border-radius: 20px;
+        &-form {
+            @include flexbox(column, flex-start);
+            gap: 2rem;
+            input {
+                outline: none;
+                border: none;
+                background: none;
+                width: 50%;
+                font-size: 0.8rem;
+                padding: 8px 1rem;
+                color: $secondary-color;
+                border-left: 2px solid $secondary-color;
+                border-radius: 5px;
+
+                &::placeholder {
+                    padding-bottom: 4px;
+                    letter-spacing: 1px;
+                    color: $light-color;
+                    border-bottom: 1px solid $secondary-color;
+                }
+                &:focus {
+                    color: $secondary-color;
+                    border-left: 2px solid $secondary-color;
+                }
+            }
+        }
+        &-alert {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 1rem 2rem;
+            background-color: $medium-color;
+            color: $light-color;
+            border-radius: 1rem;
+        }
+        &-button {
+            position: relative;
+            background-color: $medium-color;
+            color: $light-color;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.2rem;
+            letter-spacing: 2px;
+            border: 1px solid $secondary-color;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+}

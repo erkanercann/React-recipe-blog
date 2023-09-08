@@ -1,0 +1,480 @@
+.header {
+    &-main {
+        .container {
+            position: relative;
+            padding: 0 1rem;
+        }
+        .bars-icon {
+            display: none;
+        }
+        .navbar {
+            height: 60px;
+            line-height: 60px;
+            background-color: $medium-color;
+            position: fixed;
+            width: 100%;
+            top: -100px;
+            transition: all 0.8s;
+            &.show {
+                top: 0;
+            }
+            .nav {
+                @include flexbox(row, center);
+                column-gap: 0.7rem;
+                font-size: 11.5px;
+
+                &-link {
+                    @include flexbox(row, center);
+                    text-transform: uppercase;
+                    color: $light-color;
+                    svg {
+                        font-size: 0.8rem;
+                    }
+                    &.home {
+                        color: #ffff;
+                    }
+
+                    &:hover {
+                        color: $secondary-color;
+                    }
+                }
+                &-item {
+                    &.login {
+                        margin-left: auto;
+                        svg {
+                            font-size: 1rem;
+                        }
+                    }
+                    &.admin {
+                        margin-left: auto;
+                    }
+                    &.exit {
+                        svg {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+        .content {
+            &-categories {
+                position: absolute;
+                top: 60px;
+                left: 50%;
+                width: 80%;
+                padding: 1rem;
+                background-color: $medium-color;
+                border-radius: 0 0 15px 15px;
+                @include flexbox(row, center, center);
+                gap: 1rem;
+                transform-origin: top;
+                transition: all 0.4s;
+                transform: translate(-50%, 0) rotateX(90deg);
+                opacity: 0;
+                &.active {
+                    transform: translate(-50%, 0) rotateX(0deg);
+                    opacity: 1;
+                }
+                .recipe {
+                    overflow: hidden;
+                    cursor: pointer;
+                    width: 100%;
+
+                    &__image {
+                        height: 175px;
+                        object-fit: cover;
+                        object-position: center;
+                        border-radius: 10px 10px 0 0;
+                        transition: all 0.5s;
+                        &:hover {
+                            opacity: 0.6;
+                            transform: scale(1.1);
+                        }
+                    }
+                    &__title {
+                        color: #ffff;
+                        background-color: $primary-color;
+                        text-align: center;
+                        border-radius: 0 0 10px 10px;
+                        height: 50px;
+                        line-height: 50px;
+                    }
+                }
+            }
+            &-video {
+                position: relative;
+                z-index: -1;
+                height: 550px;
+                overflow: hidden;
+                video {
+                    display: block;
+                    width: 100%;
+                    height: 600px;
+                    object-fit: cover;
+                }
+                &__title {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    color: $light-color;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: rgba($color: $medium-color, $alpha: 0.5);
+                    background-color: rgba($color: $secondary-color, $alpha: 0.5);
+                    font-size: 3rem;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+
+.carousel {
+    margin: 5rem auto;
+    position: relative;
+    overflow: hidden;
+
+    &-title {
+        color: $light-color;
+        text-align: center;
+    }
+    &-separator {
+        text-align: center;
+        margin-bottom: 1rem;
+        div {
+            position: relative;
+            width: 250px;
+            margin: auto;
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                height: 1px;
+                width: 100px;
+                background-color: $secondary-color;
+            }
+            &::before {
+                left: 0;
+            }
+            &::after {
+                right: 0;
+            }
+            svg {
+                color: #ffff;
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+    }
+
+    &-item {
+        height: 250px;
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        transform: translateY(500px);
+        transition: all 0.5s;
+        opacity: 0;
+        &.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        &__image-wrapper {
+            display: block;
+            height: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                border-radius: 30px;
+                opacity: 0.8;
+            }
+            &:hover {
+                .carousel-item__title {
+                    top: 0;
+                }
+            }
+        }
+        &__title {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            color: $light-color;
+            background-color: rgba($color: $primary-color, $alpha: 0.8);
+            border-radius: 10px;
+            @include flexbox(row, center, center);
+            transition: all 0.5s;
+        }
+    }
+
+    &-controls {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        color: #ffff;
+        font-size: 2rem;
+        gap: 1rem;
+        @include flexbox(column);
+        cursor: pointer;
+
+        svg {
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+}
+
+#recipes {
+    padding: 5rem 2rem;
+    .recipes {
+        position: relative;
+        @include flexbox(row, center);
+        background-color: $medium-color;
+        padding: 2rem;
+        border-radius: 50px;
+        overflow: hidden;
+
+        &-aside {
+            @include flexbox(column);
+            gap: 1rem;
+            &__title {
+                color: $secondary-color;
+                text-align: center;
+                border-bottom: 1px solid $secondary-color;
+            }
+            &__button {
+                @include flexbox(row, center, center);
+                gap: 1rem;
+                width: 150px;
+                height: 30px;
+                font-size: 0.9rem;
+                color: $primary-color;
+                background-color: $secondary-color;
+                border: 1px solid $secondary-color;
+                border-radius: 15px 5px;
+                transition: all 0.3s;
+                cursor: pointer;
+                &:hover {
+                    background-color: $medium-color;
+                    color: $secondary-color;
+                }
+                &.active {
+                    background-color: $medium-color;
+                    color: $secondary-color;
+                }
+            }
+        }
+        &-show {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            gap: 3rem;
+            width: 100%;
+            padding: 4rem;
+            color: #ffff;
+            .recipe {
+                position: relative;
+                width: 250px;
+                border: 2px solid $secondary-color;
+                border-radius: 20px;
+                overflow: hidden;
+
+                &:hover img {
+                    opacity: 0.5;
+                }
+                &__image {
+                    height: 250px;
+                    border-radius: 15px 15px 0 0;
+                    object-fit: cover;
+                    transition: all 0.5s;
+                }
+                &__title {
+                    color: $secondary-color;
+                    text-align: center;
+                    padding: 12px 10px;
+                    border-radius: 0 0 20px 20px;
+                }
+                &-action {
+                    position: absolute;
+                    bottom: -100%;
+                    width: 100%;
+                    background-color: rgba($color: $secondary-color, $alpha: 1);
+                    @include flexbox(row, center, space-evenly);
+                    padding: 20px;
+                    border: 2px solid $secondary-color;
+                    border-radius: 0;
+                    transition: all 0.5s;
+
+                    svg {
+                        color: $medium-color;
+                        font-size: 1.6rem;
+                        vertical-align: middle;
+                        cursor: pointer;
+                    }
+                    .search {
+                        background: none;
+                        border: none;
+                        font-size: 1.3rem;
+                    }
+                }
+                &:hover .recipe-action {
+                    bottom: 0;
+                }
+            }
+        }
+        .pagination {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            @include flexbox(row, center);
+            gap: 1rem;
+
+            &-button {
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                background-color: $medium-color;
+                color: $secondary-color;
+                border: 1px solid $secondary-color;
+                border-radius: 8px 2px;
+
+                cursor: pointer;
+                &.active {
+                    background-color: $secondary-color;
+                    color: $medium-color;
+                }
+            }
+        }
+
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: $light-color;
+            @include flexbox(row, center, center);
+            z-index: 5;
+            font-size: 4rem;
+            transition: z-index 0.3s ease 0.8s;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 60px;
+                height: 60px;
+                background-color: $secondary-color;
+                border-radius: 50px;
+                opacity: 0;
+                z-index: -1;
+                filter: blur(20px);
+                transition: all 0.5s;
+            }
+            &::before {
+                left: 0%;
+                box-shadow: -500px 0 0 #ffff;
+            }
+            &::after {
+                right: 0%;
+                box-shadow: 500px 0 0 #ffff;
+            }
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: $medium-color;
+            z-index: 1;
+        }
+        &::before {
+            left: 0;
+            transition: left 0.3s ease 0.8s;
+        }
+        &::after {
+            right: 0;
+            transition: right 0.3s ease 0.8s;
+        }
+        &:hover {
+            &::before,
+            &::after {
+                background-color: black;
+            }
+            &::before {
+                left: -100%;
+            }
+            &::after {
+                right: -100%;
+            }
+            span {
+                color: $secondary-color;
+                z-index: -99;
+                &::before {
+                    left: 50%;
+                    box-shadow: -100px 0 0 #fff;
+                    transform: translate(-50%, -50%);
+                    opacity: 1;
+                }
+                &::after {
+                    right: 50%;
+                    box-shadow: 100px 0 0 #fff;
+                    transform: translate(50%, -50%);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.lightbox {
+    &-background {
+        z-index: 99;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: $primary-color, $alpha: 0.95);
+    }
+    &-image-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 60%;
+        transform: translate(-50%, -50%);
+        background-color: $medium-color;
+        @include flexbox(row, center, center);
+        padding: 1rem;
+        border-radius: 15px;
+
+        img {
+            height: 100%;
+            width: 80%;
+            object-fit: cover;
+            border-radius: 50px;
+            object-position: center;
+        }
+    }
+}

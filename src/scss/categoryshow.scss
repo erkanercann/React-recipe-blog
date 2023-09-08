@@ -1,0 +1,108 @@
+.category-show {
+    padding: 2rem;
+    .go-to-homepage {
+        background-color: $medium-color;
+        color: $light-color;
+        &::before,
+        &::after {
+            border-color: $medium-color;
+        }
+    }
+    &__title {
+        text-align: center;
+        color: $light-color;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        div {
+            position: relative;
+            width: 250px;
+            margin: auto;
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                height: 1px;
+                width: 100px;
+                background-color: $secondary-color;
+            }
+            &::before {
+                left: 0;
+            }
+            &::after {
+                right: 0;
+            }
+            svg {
+                color: $light-color;
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .pagination {
+        @include flexbox(row, center, space-between);
+        padding: 0 3rem;
+        margin-bottom: 2rem;
+        &__button {
+            background-color: $medium-color;
+            color: $light-color;
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 20px;
+        }
+    }
+
+    .recipes {
+        @include flexbox(row, stretch, center);
+        padding: 3rem;
+        width: 70%;
+        background-color: $medium-color;
+        margin: auto;
+        border-radius: 20px;
+
+        transform: perspective(1000px) rotateY(-25deg) rotateX(20deg)
+            translate3d(-400px, -200px, -300px);
+
+        box-shadow: 0 0 50px rgba($color: $light-color, $alpha: 0.5);
+        transition: all 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        &:hover {
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba($color: $light-color, $alpha: 0.5);
+        }
+
+        .recipe {
+            position: relative;
+            width: 100%;
+
+            &-image {
+                height: 500px;
+                object-fit: cover;
+                object-position: center;
+                opacity: 0.7;
+                transition: all 0.5s;
+
+                &:hover {
+                    position: absolute;
+                    transform: scale(1.1);
+                    border-radius: 20px;
+                    box-shadow: 0 0 20px $light-color;
+                    z-index: 99;
+                    opacity: 1;
+                }
+            }
+
+            &-title {
+                position: absolute;
+                bottom: 1rem;
+                left: 50%;
+                width: 100%;
+                text-align: center;
+                transform: translateX(-50%);
+                color: $light-color;
+            }
+        }
+    }
+}

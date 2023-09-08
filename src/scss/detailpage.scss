@@ -1,0 +1,64 @@
+.recipe-details {
+    background-color: $medium-color;
+    padding: 7.7rem 5rem;
+    &__actions {
+        @include flexbox(row, center, space-between);
+        margin-bottom: 2rem;
+
+        .go-to-category {
+            @include flexbox(row, center);
+            background-color: $primary-color;
+            padding: 0.5rem;
+            border-radius: 10px;
+            color: $light-color;
+        }
+    }
+    .recipe {
+        position: relative;
+        @include flexbox(row, center);
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid $secondary-color;
+        border-radius: 20px;
+
+        &-date {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            color: $secondary-color;
+        }
+        &-image {
+            width: 35%;
+            border-radius: 50px;
+            object-fit: cover;
+            align-self: flex-start;
+        }
+        &-body {
+            align-self: flex-start;
+            color: $secondary-color;
+            &__ingredients {
+                padding: 1rem;
+                span {
+                    font-weight: bold;
+                    border-bottom: 1px solid $secondary-color;
+                }
+                ul {
+                    padding: 5px;
+                }
+                div {
+                    @include flexbox(row, stretch, space-between);
+
+                    iframe {
+                        width: 70%;
+                        height: 400px;
+                    }
+                }
+            }
+            &__instructions {
+                h3 {
+                    border-bottom: 1px solid $secondary-color;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+.container {
+    max-width: $max-width-xxl;
+    margin: auto;
+    padding: 0 3rem;
+}
+
+@mixin flexbox($direction: row, $align: stretch, $justify: flex-start) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+.go-to-homepage {
+    background-color: $secondary-color;
+    color: $medium-color;
+    padding: 5px 10px;
+    display: inline-block;
+    position: relative;
+    font-size: 1rem;
+    transition: all 0.5s;
+    &:hover {
+        &::before,
+        &::after {
+            width: 120%;
+            height: 150%;
+        }
+        background-color: $medium-color;
+        color: $secondary-color;
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border: 2px solid $secondary-color;
+        transition: all 0.5s;
+    }
+    &::before {
+        top: -5px;
+        left: -5px;
+        border-bottom: none;
+        border-right: none;
+        border-radius: 5px 0 0 0;
+    }
+    &::after {
+        bottom: -5px;
+        right: -5px;
+        border-top: none;
+        border-left: none;
+        border-radius: 0 0 5px 0;
+    }
+}
